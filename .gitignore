@@ -1,3 +1,5 @@
+# Files that are supposed not to be pushed in the production envoirnment
+
 # Logs
 logs
 *.log
@@ -118,3 +120,8 @@ dist
 .pnp.*
 
 # End of https://mrkandreev.name/snippets/gitignore-generator/#Node
+frontEnd/index.page.html
+frontEnd/index.script.js
+frontEnd/style.css
+frontEnd/home/home.page.html
+frontEnd/home/home.script.js

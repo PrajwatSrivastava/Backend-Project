@@ -2,9 +2,15 @@
     1-use try-catch block or promises
     2-use async and await */
 
+/*Loads environment settings (like port number)
+
+Connects to the database
+
+Starts the server*/
+
 import dotenv from "dotenv"
 import connectDB from "./db/index.js";
-// import {app} from './app.js'
+import {app} from './app.js'
 
 
 dotenv.config({
@@ -12,16 +18,21 @@ dotenv.config({
 })
 
 
-connectDB()
 
-// .then(() => {
-//     app.listen(process.env.PORT || 8000, () => {
-//         console.log(`⚙️ Server is running at port : ${process.env.PORT}`);
-//     })
-// })
-// .catch((err) => {
-//     console.log("MONGO db connection failed !!! ", err);
-// })
+connectDB()
+.then(() => {
+    app.on("error", (error)=>{
+        console.log(`Found Error while establishing connection with port ${error}`)
+        throw error
+    })
+
+    app.listen(process.env.PORT || 8000, () => {
+        console.log(`Server is running at port : ${process.env.PORT}`);
+    })
+})
+.catch((err) => {
+    console.log("MONGO db connection failed !!! ", err);
+})
 
 
 
